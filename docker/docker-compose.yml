@@ -1,0 +1,23 @@
+version: '23.0.5'
+
+services:
+  db:
+    image: mysql:latest
+    ports:
+      - 3300:3306
+    volumes:
+      - db:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=msa
+      - MYSQL_DATABASE=msa
+      - MYSQL_USER=msa
+      - MYSQL_PASSWORD=msa
+    networks:
+      - db
+
+volumes:
+  db: {}
+
+networks:
+  db: {}
