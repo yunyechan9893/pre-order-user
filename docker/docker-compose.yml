@@ -1,23 +1,19 @@
-version: '23.0.5'
+version: '3.9'
 
 services:
   db:
-    image: mysql:latest
+    build:
+      context: ./db
+      dockerfile: Dockerfile
     ports:
-      - 3300:3306
-    volumes:
-      - db:/var/lib/mysql
-    restart: unless-stopped
+      - "3300:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=msa
+      - MYSQL_ROOT_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
       - MYSQL_DATABASE=msa
-      - MYSQL_USER=msa
-      - MYSQL_PASSWORD=msa
+      - MYSQL_USER=${PRE_ORDER_DATABASE_USERNAME}
+      - MYSQL_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
     networks:
       - db
 
-volumes:
-  db: {}
-
 networks:
-  db: {}
+  db:
