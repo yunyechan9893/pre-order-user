@@ -1,8 +1,10 @@
 package com.yechan.usersever.member.repository;
 
-import java.util.Optional;
+import com.yechan.usersever.member.dto.MemberDto;
 
 public interface MemberQueryDslRepository {
 
-    Optional<Long> findOneByMemberId(String userId);
+    Long findOneByMemberId(String userId);
+
+    MemberDto findOneByMemberIdAndPassword(String userId);
 }

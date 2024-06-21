@@ -1,5 +1,6 @@
 package com.yechan.usersever.member.dto;
 
+import com.yechan.usersever.member.utils.AES;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,12 +15,12 @@ public class MemberRequest {
     private String phone;
     private String address;
 
-    public void convertToHashing(PasswordEncoder passwordEncoder) {
-        this.userId = passwordEncoder.encode(this.userId);
+    public void convertToHashing(PasswordEncoder passwordEncoder, AES aes) {
+        this.userId = aes.encode(this.userId);
         this.password = passwordEncoder.encode(this.password);
-        this.email = passwordEncoder.encode(this.email);
-        this.phone = passwordEncoder.encode(this.phone);
-        this.address = passwordEncoder.encode(this.address);
+        this.email = aes.encode(this.email);
+        this.phone = aes.encode(this.phone);
+        this.address = aes.encode(this.address);
     }
 
 }
