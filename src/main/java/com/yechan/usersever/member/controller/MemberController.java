@@ -2,15 +2,18 @@ package com.yechan.usersever.member.controller;
 
 import com.yechan.usersever.common.dto.CommonResult;
 import com.yechan.usersever.common.service.ResponseService;
+import com.yechan.usersever.member.dto.AddressAndPhoneRequest;
 import com.yechan.usersever.member.dto.LoginRequest;
 import com.yechan.usersever.member.dto.MemberRequest;
 import com.yechan.usersever.member.dto.PasswordRequest;
 import com.yechan.usersever.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -43,8 +46,13 @@ public class MemberController {
 
     // 핸드폰 번호, 주소
     @PatchMapping("/info")
-    public void updateUserInfo() {
+    public CommonResult updateUserInfo(
+        @RequestBody
+        AddressAndPhoneRequest request
+    ) {
+        memberService.updateAddressAndPhone(request);
 
+        return responseService.getSuccessResult();
     }
 
     // 비밀번호 변경
@@ -59,9 +67,14 @@ public class MemberController {
     }
 
     // 아이디 중복 검사
-    @PostMapping("/duplication")
-    public void duplicatedUserId() {
+    @GetMapping("/duplication")
+    public CommonResult duplicatedMemberId(
+        @RequestParam
+        String memberId
+    ) {
+        memberService.checkDuplicationMemberId(memberId);
 
+        return responseService.getSuccessResult();
     }
 
     // 이메일 인증

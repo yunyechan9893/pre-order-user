@@ -6,6 +6,7 @@ import static com.yechan.usersever.member.validation.MemberValidation.duplicateM
 import com.yechan.usersever.common.exception.MemberErrorCode;
 import com.yechan.usersever.common.exception.MemberException;
 import com.yechan.usersever.member.domain.Member;
+import com.yechan.usersever.member.dto.AddressAndPhoneRequest;
 import com.yechan.usersever.member.dto.LoginRequest;
 import com.yechan.usersever.member.dto.MemberDto;
 import com.yechan.usersever.member.dto.MemberRequest;
@@ -27,8 +28,7 @@ public class MemberService {
 
     public void signup(MemberRequest memberRequest) {
         memberRequest.convertToHashing(passwordEncoder, aes); // 유저 정보 해싱
-        Long existMemberId = memberRepository.findOneByMemberId(memberRequest.getUserId());
-        duplicateMemberId(existMemberId);
+        checkDuplicationMemberId(memberRequest.getUserId());
         memberRepository.save(Member.from(memberRequest));
     }
 
@@ -60,10 +60,30 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+
+    public void updateAddressAndPhone(AddressAndPhoneRequest request) {
+        Optional<Member> optionalMember = memberRepository.findById(request.getMemberId());
+
+        if (!optionalMember.isPresent()) {
+            throw new MemberException(MemberErrorCode.NOT_EXIST_MEMBER);
+        }
+
+        Member member = optionalMember.get();
+        member.updateInfo(request.getAddress(), request.getPhone());
+
+        memberRepository.save(member);
+    }
+
     private void checkEqulePassword(String password, String beforePassword) {
         if (passwordEncoder.matches(password, beforePassword)) {
             throw new MemberException(MemberErrorCode.EQULE_PASSWORD);
         }
+    }
+
+    public void checkDuplicationMemberId(String memberId) {
+        String encodingId = encodeAES(memberId);
+        Long existMemberId = memberRepository.findOneByMemberId(encodingId);
+        duplicateMemberId(existMemberId);
     }
 
 }

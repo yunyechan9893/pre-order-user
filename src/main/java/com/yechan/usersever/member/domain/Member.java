@@ -42,6 +42,11 @@ public class Member extends BaseEntity {
         this.password = password;
     }
 
+    public void updateInfo(String phone, String address) {
+        this.phone = phone;
+        this.address = address;
+    }
+
     public static Member from(MemberRequest member) {
         return Member.builder()
             .userId(member.getUserId())
