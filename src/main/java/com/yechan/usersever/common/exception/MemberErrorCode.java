@@ -1,9 +1,4 @@
-package com.yechan.usersever.member.common.exception;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.CONFLICT;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+package com.yechan.usersever.common.exception;
 
 import java.util.stream.Stream;
 import lombok.Getter;
@@ -18,7 +13,9 @@ public enum MemberErrorCode {
     DUPLICATE_MEMBER(-1, "중복된 아이디입니다", HttpStatus.INTERNAL_SERVER_ERROR),
     DECRYPTION_FAIL(-2, "암호화 혹은 복호화 실패", HttpStatus.INTERNAL_SERVER_ERROR),
     INITIALIZE_CHIPHER(-3, "암호화 초기화 실패", HttpStatus.INTERNAL_SERVER_ERROR),
-    EMPTY_MEMBER(-2, "아이디/비밀번호를 확인해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+    EMPTY_MEMBER(-4, "아이디/비밀번호를 확인해주세요", HttpStatus.INTERNAL_SERVER_ERROR),
+    EQULE_PASSWORD(-5, "현재 설정된 비밀번호 입니다.", HttpStatus.INTERNAL_SERVER_ERROR),
+    NOT_EXIST_MEMBER(-6, "존재하지 않는 멤버입니다", HttpStatus.INTERNAL_SERVER_ERROR);
     private final int code;
     private final String message;
     private final HttpStatus httpStatus;

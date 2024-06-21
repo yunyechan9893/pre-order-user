@@ -1,4 +1,4 @@
-package com.yechan.usersever.member.common.exception;
+package com.yechan.usersever.common.exception;
 
 import lombok.Builder;
 

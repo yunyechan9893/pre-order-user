@@ -1,4 +1,4 @@
-package com.yechan.usersever.member.config;
+package com.yechan.usersever.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

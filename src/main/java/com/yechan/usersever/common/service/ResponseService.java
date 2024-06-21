@@ -1,9 +1,9 @@
-package com.yechan.usersever.member.common.service;
+package com.yechan.usersever.common.service;
 
-import com.yechan.usersever.member.common.dto.CommonResult;
-import com.yechan.usersever.member.common.dto.ListResult;
-import com.yechan.usersever.member.common.dto.SingleResult;
-import com.yechan.usersever.member.common.exception.MemberErrorCode;
+import com.yechan.usersever.common.dto.ListResult;
+import com.yechan.usersever.common.dto.CommonResult;
+import com.yechan.usersever.common.dto.SingleResult;
+import com.yechan.usersever.common.exception.MemberErrorCode;
 import java.util.List;
 import java.util.Optional;
 import lombok.NonNull;
@@ -39,7 +39,7 @@ public record ResponseService(MessageSource messageSource) {
                 setSuccessResult(result);
                 return result;
             })
-            .orElse(new SingleResult<T>(getFailResult(message, code)));
+            .orElse(new SingleResult<>(getFailResult(message, code)));
     }
 
     public <T> ListResult<T> getListResult(List<T> list) {

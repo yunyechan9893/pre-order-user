@@ -1,4 +1,4 @@
-package com.yechan.usersever.member.common.dto;
+package com.yechan.usersever.common.dto;
 
 import java.util.List;
 import lombok.Getter;

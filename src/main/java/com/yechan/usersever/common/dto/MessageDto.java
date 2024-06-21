@@ -1,4 +1,4 @@
-package com.yechan.usersever.member.common.dto;
+package com.yechan.usersever.common.dto;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
 

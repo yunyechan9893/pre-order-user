@@ -1,9 +1,9 @@
 package com.yechan.usersever.member.validation;
 
-import static com.yechan.usersever.member.common.exception.MemberErrorCode.EMPTY_MEMBER;
+import static com.yechan.usersever.common.exception.MemberErrorCode.EMPTY_MEMBER;
 
-import com.yechan.usersever.member.common.exception.MemberErrorCode;
-import com.yechan.usersever.member.common.exception.MemberException;
+import com.yechan.usersever.common.exception.MemberErrorCode;
+import com.yechan.usersever.common.exception.MemberException;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

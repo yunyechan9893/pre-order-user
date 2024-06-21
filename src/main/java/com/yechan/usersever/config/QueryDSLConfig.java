@@ -1,4 +1,4 @@
-package com.yechan.usersever.member.config;
+package com.yechan.usersever.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

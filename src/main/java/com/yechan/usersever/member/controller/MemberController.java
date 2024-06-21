@@ -1,9 +1,10 @@
 package com.yechan.usersever.member.controller;
 
-import com.yechan.usersever.member.common.dto.CommonResult;
-import com.yechan.usersever.member.common.service.ResponseService;
+import com.yechan.usersever.common.dto.CommonResult;
+import com.yechan.usersever.common.service.ResponseService;
 import com.yechan.usersever.member.dto.LoginRequest;
 import com.yechan.usersever.member.dto.MemberRequest;
+import com.yechan.usersever.member.dto.PasswordRequest;
 import com.yechan.usersever.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -47,9 +48,14 @@ public class MemberController {
     }
 
     // 비밀번호 변경
-    @PostMapping("/password")
-    public void updatePassword() {
+    @PatchMapping("/password")
+    public CommonResult updatePassword(
+        @RequestBody
+        PasswordRequest request
+    ) {
+        memberService.updatePassword(request);
 
+        return responseService.getSuccessResult();
     }
 
     // 아이디 중복 검사

@@ -2,8 +2,8 @@ package com.yechan.usersever.member.utils;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-import com.yechan.usersever.member.common.exception.MemberErrorCode;
-import com.yechan.usersever.member.common.exception.MemberException;
+import com.yechan.usersever.common.exception.MemberErrorCode;
+import com.yechan.usersever.common.exception.MemberException;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
