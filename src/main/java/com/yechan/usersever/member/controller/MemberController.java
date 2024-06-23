@@ -9,7 +9,8 @@ import com.yechan.usersever.member.dto.LoginRequest;
 import com.yechan.usersever.member.dto.MemberRequest;
 import com.yechan.usersever.member.dto.PasswordRequest;
 import com.yechan.usersever.member.service.MemberService;
-import com.yechan.usersever.member.service.RedisService;
+import com.yechan.usersever.member.validation.UserId;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,6 +30,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public CommonResult signup(
+        @Valid
         @RequestBody
         MemberRequest memberRequest
     ) {
@@ -39,6 +41,7 @@ public class MemberController {
 
     @PostMapping("/login")
     public CommonResult login(
+        @Valid
         @RequestBody
         LoginRequest loginRequest
     ) {
@@ -50,6 +53,7 @@ public class MemberController {
     // 핸드폰 번호, 주소
     @PatchMapping("/info")
     public CommonResult updateUserInfo(
+        @Valid
         @RequestBody
         AddressAndPhoneRequest request
     ) {
@@ -61,6 +65,7 @@ public class MemberController {
     // 비밀번호 변경
     @PatchMapping("/password")
     public CommonResult updatePassword(
+        @Valid
         @RequestBody
         PasswordRequest request
     ) {
@@ -73,6 +78,7 @@ public class MemberController {
     @GetMapping("/duplication")
     public CommonResult duplicatedMemberId(
         @RequestParam
+        @UserId
         String memberId
     ) {
         memberService.checkDuplicationMemberId(memberId);
@@ -83,6 +89,7 @@ public class MemberController {
     // 이메일 인증
     @PostMapping("/mail")
     public CommonResult sendMail(
+        @Valid
         @RequestBody
         EmailRequest request
     ) {
@@ -93,6 +100,7 @@ public class MemberController {
 
     @PostMapping("/mail/certification")
     public CommonResult verifyAuthenticationNumber(
+        @Valid
         @RequestBody
         EmailAuthenticationRequest request
     ) {

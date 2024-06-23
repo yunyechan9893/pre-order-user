@@ -9,10 +9,16 @@ import java.lang.annotation.Target;
 
 
 @Constraint(validatedBy = PhoneImpl.class)
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Phone {
+
     String message() default "핸드폰은 11자 미만이어야합니다.";
+
     String pattern() default "010\\d{4}\\d{4}";
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 
 }

@@ -6,10 +6,10 @@ import com.yechan.usersever.member.validation.Password;
 import com.yechan.usersever.member.validation.Phone;
 import com.yechan.usersever.member.validation.UserId;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 @Getter
 @AllArgsConstructor
 public class MemberRequest {
@@ -26,7 +26,7 @@ public class MemberRequest {
     @Phone
     private String phone;
 
-    @Email
+    @NotNull
     private String address;
 
     @CertificationNumber
