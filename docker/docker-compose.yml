@@ -14,6 +14,19 @@ services:
       - MYSQL_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
     networks:
       - db
+  redis:
+    image: redis:latest
+    container_name: redis
+    hostname: redis
+    ports:
+      - 6370:6379
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - db
 
 networks:
   db:

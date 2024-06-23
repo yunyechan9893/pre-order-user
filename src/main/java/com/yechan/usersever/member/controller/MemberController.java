@@ -3,10 +3,13 @@ package com.yechan.usersever.member.controller;
 import com.yechan.usersever.common.dto.CommonResult;
 import com.yechan.usersever.common.service.ResponseService;
 import com.yechan.usersever.member.dto.AddressAndPhoneRequest;
+import com.yechan.usersever.member.dto.EmailAuthenticationRequest;
+import com.yechan.usersever.member.dto.EmailRequest;
 import com.yechan.usersever.member.dto.LoginRequest;
 import com.yechan.usersever.member.dto.MemberRequest;
 import com.yechan.usersever.member.dto.PasswordRequest;
 import com.yechan.usersever.member.service.MemberService;
+import com.yechan.usersever.member.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -78,6 +81,25 @@ public class MemberController {
     }
 
     // 이메일 인증
+    @PostMapping("/mail")
+    public CommonResult sendMail(
+        @RequestBody
+        EmailRequest request
+    ) {
+        memberService.sendMail(request);
+
+        return responseService.getSuccessResult();
+    }
+
+    @PostMapping("/mail/certification")
+    public CommonResult verifyAuthenticationNumber(
+        @RequestBody
+        EmailAuthenticationRequest request
+    ) {
+        String authNumber = memberService.verifyEmail(request);
+
+        return responseService.getSingleResult(authNumber);
+    }
 
     // 핸드폰 인증 (추후 시간날 때 진행)
 }

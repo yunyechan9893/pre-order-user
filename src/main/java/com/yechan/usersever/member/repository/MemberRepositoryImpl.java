@@ -32,4 +32,12 @@ public class MemberRepositoryImpl implements MemberQueryDslRepository {
             .where(member.userId.eq(userId))
             .fetchFirst();
     }
+
+    @Override
+    public Long findByEmail(String email) {
+        return jpaQueryFactory.select(member.id)
+            .from(member)
+            .where(member.email.eq(email))
+            .fetchFirst();
+    }
 }

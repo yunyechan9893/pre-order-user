@@ -14,6 +14,7 @@ public class MemberRequest {
     private String email;
     private String phone;
     private String address;
+    private String authNumber;
 
     public void convertToHashing(PasswordEncoder passwordEncoder, AES aes) {
         this.userId = aes.encode(this.userId);

@@ -1,5 +1,6 @@
 package com.yechan.usersever.common.exception;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.stream.Stream;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,12 @@ public enum MemberErrorCode {
     INITIALIZE_CHIPHER(-3, "암호화 초기화 실패", HttpStatus.INTERNAL_SERVER_ERROR),
     EMPTY_MEMBER(-4, "아이디/비밀번호를 확인해주세요", HttpStatus.INTERNAL_SERVER_ERROR),
     EQULE_PASSWORD(-5, "현재 설정된 비밀번호 입니다.", HttpStatus.INTERNAL_SERVER_ERROR),
-    NOT_EXIST_MEMBER(-6, "존재하지 않는 멤버입니다", HttpStatus.INTERNAL_SERVER_ERROR);
+    NOT_EXIST_MEMBER(-6, "존재하지 않는 멤버입니다", HttpStatus.INTERNAL_SERVER_ERROR),
+    MESSAGE_SETTING_FALI(-7, "메세지 세팅에 실패했습니다", HttpStatus.INTERNAL_SERVER_ERROR),
+    NO_SUCH_ALGORITHM(-8, "랜덤 알고리즘을 찾을 수 없습니다", HttpStatus.INTERNAL_SERVER_ERROR),
+    DIFFERENT_AUTH_NUMBER(-9, "인증번호가 다릅니다", HttpStatus.INTERNAL_SERVER_ERROR),
+    CHECK_EMAIL_AUTHENTICATION(-10, "이메일 인증을 다시 해주세요", HttpStatus.INTERNAL_SERVER_ERROR),
+    DUPLICATION_EMAIL(-10, "이메일 인증을 다시 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
     private final int code;
     private final String message;
     private final HttpStatus httpStatus;
