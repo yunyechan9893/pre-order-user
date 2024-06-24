@@ -32,6 +32,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean bootJar
 
+      - name: Enviroment Setting
+        run: |
+          export PRE_ORDER_DATABASE_URL=${{ secrets.PRE_ORDER_DATABASE_URL }}
+          export PRE_ORDER_DATABASE_USERNAME=${{ secrets.PRE_ORDER_DATABASE_USERNAME }}
+          export PRE_ORDER_DATABASE_PASSWORD=${{ secrets.PRE_ORDER_DATABASE_PASSWORD }}
+
       # Docker Compose 빌드 및 실행
       - name: Build and start services with Docker Compose
         run: docker-compose -f docker/docker-compose.yml up --build -d

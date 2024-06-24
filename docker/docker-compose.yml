@@ -8,10 +8,10 @@ services:
     ports:
       - "3300:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=${secrets.PRE_ORDER_DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${{PRE_ORDER_DATABASE_PASSWORD}}
       - MYSQL_DATABASE=msa
-      - MYSQL_USER=${secrets.PRE_ORDER_DATABASE_USERNAME}
-      - MYSQL_PASSWORD=${secrets.PRE_ORDER_DATABASE_PASSWORD}
+      - MYSQL_USER=${{PRE_ORDER_DATABASE_USERNAME}}
+      - MYSQL_PASSWORD=${{PRE_ORDER_DATABASE_PASSWORD}}
     networks:
       - db
   redis:
@@ -34,10 +34,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - MYSQL_ROOT_PASSWORD=${secrets.PRE_ORDER_DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${{PRE_ORDER_DATABASE_PASSWORD}}
       - MYSQL_DATABASE=msa
-      - MYSQL_USER=${secrets.PRE_ORDER_DATABASE_USERNAME}
-      - MYSQL_PASSWORD=${secrets.PRE_ORDER_DATABASE_PASSWORD}
+      - MYSQL_USER=${{PRE_ORDER_DATABASE_USERNAME}}
+      - MYSQL_PASSWORD=${{PRE_ORDER_DATABASE_PASSWORD}}
     networks:
       - db
 
