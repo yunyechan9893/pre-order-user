@@ -1,5 +1,7 @@
 package com.yechan.usersever.member.controller;
 
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import com.yechan.usersever.common.dto.CommonResult;
 import com.yechan.usersever.common.service.ResponseService;
 import com.yechan.usersever.member.dto.AddressAndPhoneRequest;
@@ -10,8 +12,6 @@ import com.yechan.usersever.member.dto.MemberRequest;
 import com.yechan.usersever.member.dto.PasswordRequest;
 import com.yechan.usersever.member.service.MemberService;
 import com.yechan.usersever.member.validation.UserId;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;

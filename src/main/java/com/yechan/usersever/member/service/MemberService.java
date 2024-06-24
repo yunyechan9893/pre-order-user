@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private static final String CHECK_COMPLETED = "TRUE";
+    private static final String NULL = "null";
     private static final Duration THREE_MINUTES = Duration.ofMillis(1000L * 60L * 3L);
     private static final Duration TEN_MINUTES = Duration.ofMillis(1000L * 60L * 10L);
     private final MemberRepository memberRepository;
@@ -41,7 +42,7 @@ public class MemberService {
 
     public void signup(MemberRequest memberRequest) {
         String authentication = redisService.getValues(memberRequest.getAuthNumber());
-        if (authentication.equals("null")) {
+        if (authentication.equals(NULL)) {
             throw new MemberException(CHECK_EMAIL_AUTHENTICATION);
         }
 
