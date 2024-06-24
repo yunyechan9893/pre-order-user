@@ -24,19 +24,22 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Make application.yml
-        run: |
-          mkdir -p ./src/main/resources
-          echo "${{ secrets.YML }}" > ./src/main/resources/application.yml
-
       - name: Build with Gradle
         run: ./gradlew clean bootJar
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Copy JAR to Docker context
+        run: cp build/libs/UserSever-0.0.1-SNAPSHOT.jar docker/server/
 
       - name: Enviroment Setting
         run: |
           export PRE_ORDER_DATABASE_URL=${{ secrets.PRE_ORDER_DATABASE_URL }}
           export PRE_ORDER_DATABASE_USERNAME=${{ secrets.PRE_ORDER_DATABASE_USERNAME }}
           export PRE_ORDER_DATABASE_PASSWORD=${{ secrets.PRE_ORDER_DATABASE_PASSWORD }}
+          export PRE_ORDER_NAVER_ID=${{ secrets.PRE_ORDER_NAVER_ID }}
+          export PRE_ORDER_NAVER_PASSWORD=${{ secrets.PRE_ORDER_NAVER_PASSWORD }}
 
       # Docker Compose 빌드 및 실행
       - name: Build and start services with Docker Compose
