@@ -34,24 +34,24 @@ services:
       - host.docker.internal:host-gateway
     networks:
       - test_network
-#  server:
-#    depends_on:
-#      db:
-#        condition: service_healthy
-#    build:
-#      context: .
-#      dockerfile: docker/server/Dockerfile
-#    ports:
-#      - "7000:7000"
-#    networks:
-#      - test_network
-#    environment:
-#      - PRE_ORDER_DATABASE_URL=jdbc:mysql://db:3306/msa?useSSL=false&allowPublicKeyRetrieval=true
-#      - PRE_ORDER_DATABASE_USERNAME=${PRE_ORDER_DATABASE_USERNAME}
-#      - PRE_ORDER_DATABASE_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
-#      - ENCRYPTION_SECRET_KEY=${ENCRYPTION_SECRET_KEY}
-#      - PRE_ORDER_NAVER_ID=${PRE_ORDER_NAVER_ID}
-#      - PRE_ORDER_NAVER_PASSWORD=${PRE_ORDER_NAVER_PASSWORD}
+  server:
+    depends_on:
+      db:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: docker/server/Dockerfile
+    ports:
+      - "7000:7000"
+    networks:
+      - test_network
+    environment:
+      - PRE_ORDER_DATABASE_URL=jdbc:mysql://db:3306/msa?useSSL=false&allowPublicKeyRetrieval=true
+      - PRE_ORDER_DATABASE_USERNAME=${PRE_ORDER_DATABASE_USERNAME}
+      - PRE_ORDER_DATABASE_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
+      - ENCRYPTION_SECRET_KEY=${ENCRYPTION_SECRET_KEY}
+      - PRE_ORDER_NAVER_ID=${PRE_ORDER_NAVER_ID}
+      - PRE_ORDER_NAVER_PASSWORD=${PRE_ORDER_NAVER_PASSWORD}
 
 networks:
   test_network:
