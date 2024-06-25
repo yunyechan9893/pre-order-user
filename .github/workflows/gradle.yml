@@ -40,7 +40,7 @@ jobs:
 
       # Docker Compose 빌드 및 실행
       - name: Build and start services with Docker Compose
-        run: docker-compose -f up --build -d
+        run: docker-compose up -d
 
       - name: docker login
         uses: docker/login-action@v2
