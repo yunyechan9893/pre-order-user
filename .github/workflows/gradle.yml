@@ -50,3 +50,7 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker-compose push
+
+      - name: 🐋 Push a Docker Image to DockerHub
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE_NAME }}:${{ secrets.DOCKER_IMAGE_USER_TAG }}
