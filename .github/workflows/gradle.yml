@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew clean bootJar
 
       - name: Copy JAR to Docker context
-        run: cp build/libs/UserSever-0.0.1-SNAPSHOT.jar docker/server/
+        run: cp build/libs/UserSever-0.0.1-SNAPSHOT.jar docker/server/UserSever-0.0.1-SNAPSHOT.jar
 
       - name: Build and start services with Docker Compose
         run: docker-compose -f ./docker-compose.yml up --build -d
@@ -58,7 +58,7 @@ jobs:
         with:
           host: ${{ secrets.PRE_ORDER_USER_EC2_HOST }}
           username: ${{ secrets.PRE_ORDER_USER_EC2_USERNAME }}
-          password: ${{ secrets.PRE_ORDER_USER_EC2_PASSWORD }}
+          key: ${{ secrets.PRE_ORDER_USER_EC2_SSH_KEY }}
           port: ${{ secrets.PRE_ORDER_USER_EC2_PORT }}
           source: "docker/server/UserSever-0.0.1-SNAPSHOT.jar"
           target: "/home/ubuntu/docker/server/UserSever-0.0.1-SNAPSHOT.jar"
