@@ -81,7 +81,7 @@ jobs:
           username: ${{ secrets.PRE_ORDER_USER_EC2_USERNAME }}
           key: ${{ secrets.PRE_ORDER_USER_EC2_SSH_KEY }}
           source: "envfile"
-          target: "/home/ubuntu/envfile"
+          target: "/home/ubuntu/"
 
       - name: Run commands on EC2
         uses: appleboy/ssh-action@master
