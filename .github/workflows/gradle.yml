@@ -65,14 +65,14 @@ jobs:
 
       - name: Save environment variables to file
         run: |
-          echo "PRE_ORDER_DATABASE_URL=${{ secrets.PRE_ORDER_DATABASE_URL }}" > envfile
-          echo "PRE_ORDER_DATABASE_USERNAME=${{ secrets.PRE_ORDER_DATABASE_USERNAME }}" >> envfile
-          echo "PRE_ORDER_DATABASE_PASSWORD=${{ secrets.PRE_ORDER_DATABASE_PASSWORD }}" >> envfile
-          echo "PRE_ORDER_NAVER_ID=${{ secrets.PRE_ORDER_NAVER_ID }}" >> envfile
-          echo "PRE_ORDER_NAVER_PASSWORD=${{ secrets.PRE_ORDER_NAVER_PASSWORD }}" >> envfile
-          echo "ENCRYPTION_SECRET_KEY=${{ secrets.ENCRYPTION_SECRET_KEY }}" >> envfile
-          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> envfile
-          echo "DOCKERHUB_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> envfile
+          echo "PRE_ORDER_DATABASE_URL=${{ secrets.PRE_ORDER_DATABASE_URL }}" > envfile.env
+          echo "PRE_ORDER_DATABASE_USERNAME=${{ secrets.PRE_ORDER_DATABASE_USERNAME }}" >> envfile.env
+          echo "PRE_ORDER_DATABASE_PASSWORD=${{ secrets.PRE_ORDER_DATABASE_PASSWORD }}" >> envfile.env
+          echo "PRE_ORDER_NAVER_ID=${{ secrets.PRE_ORDER_NAVER_ID }}" >> envfile.env
+          echo "PRE_ORDER_NAVER_PASSWORD=${{ secrets.PRE_ORDER_NAVER_PASSWORD }}" >> envfile.env
+          echo "ENCRYPTION_SECRET_KEY=${{ secrets.ENCRYPTION_SECRET_KEY }}" >> envfile.env
+          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> envfile.env
+          echo "DOCKERHUB_PASSWORD=${{ secrets.DOCKER_PASSWORD }}" >> envfile.env
 
       - name: Transfer envfile to EC2
         uses: appleboy/scp-action@master
@@ -81,7 +81,7 @@ jobs:
           username: ${{ secrets.PRE_ORDER_USER_EC2_USERNAME }}
           key: ${{ secrets.PRE_ORDER_USER_EC2_SSH_KEY }}
           port: ${{ secrets.PRE_ORDER_USER_EC2_PORT }}
-          source: "envfile"
+          source: "envfile.env"
           target: "/home/ubuntu/"
 
       - name: Run commands on EC2
@@ -92,7 +92,7 @@ jobs:
           key: ${{ secrets.PRE_ORDER_USER_EC2_SSH_KEY }}
           script: |
             # Load the environment variables from envfile
-            export $(cat /home/ubuntu/envfile | xargs)
+            export $(cat /home/ubuntu/envfile.env | xargs)
             # Run your deployment commands here
             echo "Environment variables set on EC2"
             # Example deployment command
