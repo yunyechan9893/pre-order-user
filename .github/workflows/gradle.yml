@@ -61,7 +61,7 @@ jobs:
           key: ${{ secrets.PRE_ORDER_USER_EC2_SSH_KEY }}
           port: ${{ secrets.PRE_ORDER_USER_EC2_PORT }}
           source: "docker/server/UserSever-0.0.1-SNAPSHOT.jar"
-          target: "/home/ubuntu/docker/server/"
+          target: "/home/ubuntu/"
 
       - name: Save environment variables to file
         run: |
