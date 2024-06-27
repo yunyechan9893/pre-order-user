@@ -46,7 +46,7 @@ services:
     networks:
       - test_network
     environment:
-      - PRE_ORDER_DATABASE_URL=jdbc:mysql://db:3306/msa?useSSL=false&allowPublicKeyRetrieval=true
+      - PRE_ORDER_DATABASE_URL=${PRE_ORDER_DATABASE_URL}
       - PRE_ORDER_DATABASE_USERNAME=${PRE_ORDER_DATABASE_USERNAME}
       - PRE_ORDER_DATABASE_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
       - ENCRYPTION_SECRET_KEY=${ENCRYPTION_SECRET_KEY}
