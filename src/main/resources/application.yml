@@ -20,7 +20,7 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: ${PRE_ORDER_REDIS_HOST}
       port: 6370
 
 enviroment:

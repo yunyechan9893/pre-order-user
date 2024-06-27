@@ -3,5 +3,5 @@ FROM openjdk:17
 
 COPY ./docker/server/ .
 
-ENTRYPOINT ["java", "-jar", "./docker/server/UserSever-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "UserSever-0.0.1-SNAPSHOT.jar"]
 

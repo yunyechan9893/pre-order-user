@@ -16,6 +16,7 @@ jobs:
       PRE_ORDER_DATABASE_URL: ${{ secrets.PRE_ORDER_DATABASE_URL }}
       PRE_ORDER_DATABASE_USERNAME: ${{ secrets.PRE_ORDER_DATABASE_USERNAME }}
       PRE_ORDER_DATABASE_PASSWORD: ${{ secrets.PRE_ORDER_DATABASE_PASSWORD }}
+      PRE_ORDER_REDIS_HOST: ${{ secrets.PRE_ORDER_REDIS_HOST }}
       PRE_ORDER_NAVER_ID: ${{ secrets.PRE_ORDER_NAVER_ID }}
       PRE_ORDER_NAVER_PASSWORD: ${{ secrets.PRE_ORDER_NAVER_PASSWORD }}
       ENCRYPTION_SECRET_KEY: ${{ secrets.ENCRYPTION_SECRET_KEY }}
@@ -68,6 +69,7 @@ jobs:
           echo "PRE_ORDER_DATABASE_URL=${{ secrets.PRE_ORDER_DATABASE_URL }}" > envfile.env
           echo "PRE_ORDER_DATABASE_USERNAME=${{ secrets.PRE_ORDER_DATABASE_USERNAME }}" >> envfile.env
           echo "PRE_ORDER_DATABASE_PASSWORD=${{ secrets.PRE_ORDER_DATABASE_PASSWORD }}" >> envfile.env
+          echo "PRE_ORDER_REDIS_HOST: ${{ secrets.PRE_ORDER_REDIS_HOST }}" >> envfile.env
           echo "PRE_ORDER_NAVER_ID=${{ secrets.PRE_ORDER_NAVER_ID }}" >> envfile.env
           echo "PRE_ORDER_NAVER_PASSWORD=${{ secrets.PRE_ORDER_NAVER_PASSWORD }}" >> envfile.env
           echo "ENCRYPTION_SECRET_KEY=${{ secrets.ENCRYPTION_SECRET_KEY }}" >> envfile.env
@@ -96,4 +98,4 @@ jobs:
             # Run your deployment commands here
             echo "Environment variables set on EC2"
             # Example deployment command
-            sudo docker-compose -f docker-compose.yml up -d
+            sudo docker-compose --env-file envfile.env up --build
