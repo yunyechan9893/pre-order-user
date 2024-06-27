@@ -96,4 +96,4 @@ jobs:
             # Run your deployment commands here
             echo "Environment variables set on EC2"
             # Example deployment command
-            docker-compose -f docker-compose.yml up -d
+            sudo docker-compose -f docker-compose.yml up -d
