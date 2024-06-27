@@ -80,6 +80,7 @@ jobs:
           host: ${{ secrets.PRE_ORDER_USER_EC2_HOST }}
           username: ${{ secrets.PRE_ORDER_USER_EC2_USERNAME }}
           key: ${{ secrets.PRE_ORDER_USER_EC2_SSH_KEY }}
+          port: ${{ secrets.PRE_ORDER_USER_EC2_PORT }}
           source: "envfile"
           target: "/home/ubuntu/"
 
