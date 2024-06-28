@@ -31,8 +31,4 @@ public class MemberException extends RuntimeException {
     super(message, cause);
   }
 
-  public MemberException(MemberErrorCode memberErrorCode, Throwable cause) {
-    super(memberErrorCode.getMessage(), cause);
-    this.memberErrorCode = memberErrorCode;
-  }
 }

@@ -2,8 +2,6 @@ package com.yechan.usersever.member.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class CertificationNumberImpl implements ConstraintValidator<CertificationNumber, String> {
 

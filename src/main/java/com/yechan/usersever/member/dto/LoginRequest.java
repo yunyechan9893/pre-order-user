@@ -2,7 +2,6 @@ package com.yechan.usersever.member.dto;
 
 import com.yechan.usersever.member.validation.Password;
 import com.yechan.usersever.member.validation.UserId;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,7 +10,7 @@ import lombok.Getter;
 public class LoginRequest {
 
     @UserId
-    String memberId;
+    String userId;
 
     @Password
     String password;

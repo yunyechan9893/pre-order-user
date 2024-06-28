@@ -4,6 +4,7 @@ import static com.yechan.usersever.common.exception.MemberErrorCode.CHECK_EMAIL_
 import static com.yechan.usersever.common.exception.MemberErrorCode.DUPLICATION_EMAIL;
 import static com.yechan.usersever.common.exception.MemberErrorCode.EQULE_PASSWORD;
 import static com.yechan.usersever.member.validation.MemberValidation.checkMember;
+import static com.yechan.usersever.member.validation.MemberValidation.checkMemberIdPassword;
 import static com.yechan.usersever.member.validation.MemberValidation.duplicateMemberId;
 import static com.yechan.usersever.member.validation.MemberValidation.verifyAuthenticationNumber;
 
@@ -52,13 +53,13 @@ public class MemberService {
     }
 
     public void login(LoginRequest loginRequest) {
-        String encryptionId = encodeAES(loginRequest.getMemberId());
+        String encryptionId = encodeAES(loginRequest.getUserId());
 
         MemberDto member = memberRepository.findOneByMemberIdAndPassword(encryptionId);
+        checkMember(member);
         Boolean isPassword = passwordEncoder.matches(loginRequest.getPassword(),
             member.getPassword());
-
-        checkMember(encryptionId, isPassword);
+        checkMemberIdPassword(encryptionId, isPassword);
     }
 
     private String encodeAES(String text) {
@@ -66,7 +67,7 @@ public class MemberService {
     }
 
     public void updatePassword(PasswordRequest passwordRequest) {
-        Optional<Member> optionalMember = memberRepository.findById(passwordRequest.getMemberId());
+        Optional<Member> optionalMember = memberRepository.findById(passwordRequest.getId());
 
         if (!optionalMember.isPresent()) {
             throw new MemberException(MemberErrorCode.NOT_EXIST_MEMBER);
@@ -81,7 +82,7 @@ public class MemberService {
 
 
     public void updateAddressAndPhone(AddressAndPhoneRequest request) {
-        Optional<Member> optionalMember = memberRepository.findById(request.getMemberId());
+        Optional<Member> optionalMember = memberRepository.findById(request.getId());
 
         if (!optionalMember.isPresent()) {
             throw new MemberException(MemberErrorCode.NOT_EXIST_MEMBER);

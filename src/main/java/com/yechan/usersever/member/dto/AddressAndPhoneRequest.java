@@ -1,18 +1,18 @@
 package com.yechan.usersever.member.dto;
 
 import com.yechan.usersever.member.validation.Phone;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class AddressAndPhoneRequest {
 
     @NotNull
-    Long memberId;
+    Long id;
 
-    @Email
+    @NotNull
     String address;
 
     @Phone

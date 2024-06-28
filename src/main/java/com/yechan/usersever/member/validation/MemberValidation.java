@@ -5,6 +5,7 @@ import static com.yechan.usersever.common.exception.MemberErrorCode.EMPTY_MEMBER
 
 import com.yechan.usersever.common.exception.MemberErrorCode;
 import com.yechan.usersever.common.exception.MemberException;
+import com.yechan.usersever.member.dto.MemberDto;
 import java.util.Objects;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,13 @@ public class MemberValidation {
         }
     }
 
-    public static void checkMember(String encryptionId, boolean isPassword) {
+    public static void checkMember(MemberDto member) {
+        if (Objects.isNull(member)) {
+            throw new MemberException(EMPTY_MEMBER);
+        }
+    }
+
+    public static void checkMemberIdPassword(String encryptionId, boolean isPassword) {
         if (Boolean.FALSE.equals(isPassword) || Objects.isNull(encryptionId)) {
             throw new MemberException(EMPTY_MEMBER);
         }

@@ -26,16 +26,12 @@ public class Member extends BaseEntity {
     @Column(name = "user_id")
     private String userId;
 
-    @Column
     private String password;
 
-    @Column
     private String email;
 
-    @Column
     private String phone;
 
-    @Column
     private String address;
 
     public void updatePassword(String password) {

@@ -78,10 +78,11 @@ public class MemberController {
     @GetMapping("/duplication")
     public CommonResult duplicatedMemberId(
         @RequestParam
+        @Valid
         @UserId
-        String memberId
+        String userId
     ) {
-        memberService.checkDuplicationMemberId(memberId);
+        memberService.checkDuplicationMemberId(userId);
 
         return responseService.getSuccessResult();
     }
@@ -89,8 +90,8 @@ public class MemberController {
     // 이메일 인증
     @PostMapping("/mail")
     public CommonResult sendMail(
-        @Valid
         @RequestBody
+        @Valid
         EmailRequest request
     ) {
         memberService.sendMail(request);

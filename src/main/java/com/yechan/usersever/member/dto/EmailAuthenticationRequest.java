@@ -2,10 +2,11 @@ package com.yechan.usersever.member.dto;
 
 import com.yechan.usersever.member.validation.CertificationNumber;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class EmailAuthenticationRequest {
 
     @Email
