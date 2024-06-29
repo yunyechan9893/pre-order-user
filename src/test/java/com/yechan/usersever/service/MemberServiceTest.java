@@ -113,7 +113,7 @@ class MemberServiceTest {
 
     @Test
     @DisplayName("verifyEmail 메서드는 ")
-    void verifyEmail(){
+    void verifyEmail() {
         EmailAuthenticationRequest request = new EmailAuthenticationRequest(
             EMAIL,
             AUTH_NUMBER
