@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: mysql_db
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
+      - MYSQL_DATABASE=msa
+      - MYSQL_USER=${PRE_ORDER_DATABASE_USERNAME}
+      - MYSQL_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
+    networks:
+      - test_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    hostname: redis
+    ports:
+      - "6370:6379"
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - test_network
+
+  server:
+    container_name: server
+    depends_on:
+      db:
+        condition: service_healthy
+    build:
+      context: .
+      dockerfile: docker/server/Dockerfile
+    ports:
+      - "7000:7000"
+    networks:
+      - test_network
+    environment:
+      - PRE_ORDER_DATABASE_URL=${PRE_ORDER_DOCKER_DATABASE_URL}
+      - PRE_ORDER_DATABASE_USERNAME=${PRE_ORDER_DATABASE_USERNAME}
+      - PRE_ORDER_DATABASE_PASSWORD=${PRE_ORDER_DATABASE_PASSWORD}
+      - ENCRYPTION_SECRET_KEY=${ENCRYPTION_SECRET_KEY}
+      - PRE_ORDER_NAVER_ID=${PRE_ORDER_NAVER_ID}
+      - PRE_ORDER_NAVER_PASSWORD=${PRE_ORDER_NAVER_PASSWORD}
+
+networks:
+  test_network:
+    driver: bridge
