@@ -60,22 +60,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'io.micrometer:micrometer-core'
     implementation 'io.micrometer:micrometer-registry-prometheus'
-
-    // h2
-    runtimeOnly 'com.h2database:h2'
 }
 
 test {
     useJUnitPlatform()
 }
 
-tasks.register('buildJar', Jar) {
-    dependsOn test // buildJar 작업을 실행하기 전에 test 작업을 실행
-    archiveBaseName.set('my-application')
-    archiveVersion.set('1.0.0')
-    from sourceSets.main.output
-}
-
-build {
-    dependsOn buildJar // build 작업을 실행할 때 buildJar 작업을 실행
-}
