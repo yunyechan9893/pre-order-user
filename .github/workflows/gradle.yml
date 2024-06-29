@@ -35,7 +35,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean bootJar
+        run: ./gradlew clean build bootJar
 
       - name: Copy JAR to Docker context
         run: cp build/libs/UserSever-0.0.1-SNAPSHOT.jar docker/server/UserSever-0.0.1-SNAPSHOT.jar
