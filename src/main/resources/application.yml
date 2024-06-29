@@ -1,3 +1,6 @@
+server:
+  port: 7000
+
 spring:
   application:
     name: UserSever
@@ -23,6 +26,23 @@ spring:
       host: ${PRE_ORDER_REDIS_HOST}
       port: 6370
 
+management:
+  endpoint:
+    metrics:
+      enabled: true  # endpoint를 활성화한다.
+    prometheus:
+      enabled: true
+
+  endpoints:  # Actuator가 제공하는 endpoint를 열어준다.
+    web:
+      exposure:
+        include: "*"
+#        include: health, info, metrics, prometheus
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 enviroment:
   encryption:
     secret-key: ${ENCRYPTION_SECRET_KEY}
@@ -30,5 +50,3 @@ enviroment:
     id: ${PRE_ORDER_NAVER_ID}
     password: ${PRE_ORDER_NAVER_PASSWORD}
 
-server:
-  port: 7000

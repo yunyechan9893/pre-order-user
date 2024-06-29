@@ -15,7 +15,8 @@ public class CorsConfig implements WebMvcConfigurer {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                     .allowedOriginPatterns(
-                        "http://localhost:8080"
+                        "http://localhost:7000",
+                        "http://localhost:9090"
                     )
                     .allowedHeaders("*")
                     .exposedHeaders("ACCESS_KEY", "Authorization", "RefreshToken")

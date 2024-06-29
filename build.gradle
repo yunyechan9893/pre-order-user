@@ -51,6 +51,11 @@ dependencies {
 
     // 유효성 체크
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+
+    // 프로메테우스
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-core'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
 }
 
 tasks.named('test') {
